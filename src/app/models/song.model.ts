@@ -7,12 +7,13 @@ export class Song{
     file:string;
     album:string;
 
-    constructor(id:string, number:number, name:string, duration:string, file:string, album:string){
-        this.id = id;
-        this.number = number;
-        this.name = name;
-        this.duration = duration;
-        this.file = file;
-        this.album = album;
+    constructor();
+    constructor(id?:string, number?:number, name?:string, duration?:string, file?:string, album?:string){
+        if(id) this.id = id;
+        if(number) this.number = number;
+        if(name) this.name = name;
+        if(duration) this.duration = duration;
+        if(file) this.file = file;
+        if(album) this.album = album;
     }
 }

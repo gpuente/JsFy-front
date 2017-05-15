@@ -8,13 +8,16 @@ export class User{
     role:string;
     image:string;
 
-    constructor(id:string, name:string, surname:string, email:string, password:string, role:string, image:string){
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.image = image;
+    constructor()
+    constructor(role:string)
+    constructor(id:string, name:string, surname:string, email:string, password:string, role:string, image:string)
+    constructor(id?:string, name?:string, surname?:string, email?:string, password?:string, role?:string, image?:string){
+        if(id) this.id = id;
+        if(name) this.name = name;
+        if(surname) this.surname = surname;
+        if(email) this.email = email;
+        if(password) this.password = password;
+        if(role) this.role = role;
+        if(image) this.image = image;
     }
 }

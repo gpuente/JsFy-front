@@ -1,3 +1,65 @@
-<h1>
-  {{title}}
-</h1>
+<div *ngIf="identity">
+  <div class="navigation col-lg-1">
+    <h1>
+      {{title}}
+    </h1>
+  </div>
+  <div class="clearfix"></div>
+  <div class="central col-lg-11">
+    <p>Estás logueado en la app</p>
+  </div>
+</div>
+
+
+
+<div *ngIf="!identity" class="col-md-12">
+  <div class="col-md-6">
+    <h1>LogIn</h1>
+    <form #loginForm="ngForm" class="col-md-9">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input #email="ngModel" [(ngModel)]="user.email" type="text" name="email" id="email" class="form-control" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input #password="ngModel" [(ngModel)]="user.password" type="password" name="password" id="password" class="form-control" placeholder="yourpassword" required>
+      </div>
+
+      <input type="submit" value="LogIn" class="btn btn-primary">
+    </form>
+  </div>
+
+  <div class="col-md-6">
+    <h1>Register</h1>
+    <form #registerForm="ngForm" class="col-md-9" >
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input #name="ngModel" [(ngModel)]="user.name" type="text" name="name" id="name" class="form-control" placeholder="yourname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input #lastname="ngModel" [(ngModel)]="user.surname" type="text" name="lastname" id="lastname" class="form-control" placeholder="lastname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="_email">Email:</label>
+        <input #_email="ngModel" [(ngModel)]="user.email" type="text" name="_email" id="_email" class="form-control" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="_password">New Password:</label>
+        <input #_password="ngModel" [(ngModel)]="newPassword" type="password" name="_password" id="_password" class="form-control" placeholder="yourpassword" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input #confirmPassword="ngModel" [(ngModel)]="passwordConfirm" type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="yourpassword" required>
+      </div>
+
+      <input type="submit" value="Register" class="btn btn-primary">
+    </form>
+  </div>
+
+</div>
