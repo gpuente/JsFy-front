@@ -8,10 +8,7 @@ export class User{
     role:string;
     image:string;
 
-    constructor()
-    constructor(role:string)
-    constructor(id:string, name:string, surname:string, email:string, password:string, role:string, image:string)
-    constructor(id?:string, name?:string, surname?:string, email?:string, password?:string, role?:string, image?:string){
+    constructor(role:string = 'ROLE_USER', id?:string, name?:string, surname?:string, email?:string, password?:string, image?:string){
         if(id) this.id = id;
         if(name) this.name = name;
         if(surname) this.surname = surname;
