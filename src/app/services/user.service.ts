@@ -13,7 +13,7 @@ export class UserService {
     this.url = environment.urls.base;
   }
 
-  logIn(user:any, getHash:boolean = false){
+  logIn(user:any, getHash:string = 'false'){
     user.gethash = getHash;
     let headers = new Headers({'Content-Type':'application/json'});
     return this.http.post(`${this.url}login`, user, headers)

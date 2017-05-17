@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   urls:{
-    base: "http://localhost:3977/api/"
+    base: "http://jsfy.guillermopuente.com/api/"
   }
 };
