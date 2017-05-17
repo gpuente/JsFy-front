@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
   token:string;
   newPassword:string;
   passwordConfirm:string;
+  errorMessage:string;
 
   constructor( private _userService:UserService){
     this.user = new User('ROLE_USER');
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit{
       },
       (error) => {
         console.log(error)
+        this.errorMessage = JSON.parse(error._body).message;
       }, ()=>{});
   }
 }
