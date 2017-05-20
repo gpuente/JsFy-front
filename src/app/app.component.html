@@ -42,7 +42,7 @@
 
   <div class="col-md-6">
     <h1>Register</h1>
-    <form #registerForm="ngForm" class="col-md-9" >
+    <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="col-md-9" >
       <div class="form-group">
         <label for="name">Name:</label>
         <input #name="ngModel" [(ngModel)]="newUser.name" type="text" name="name" id="name" class="form-control" placeholder="yourname" required>
@@ -63,11 +63,13 @@
         <input #_password="ngModel" [(ngModel)]="newPassword" type="password" name="_password" id="_password" class="form-control" placeholder="yourpassword" required>
       </div>
 
-      <div class="form-group">
+      <div class="form-group has-feedback" [class]="warning">
         <label for="confirmPassword">Confirm Password:</label>
-        <input #confirmPassword="ngModel" [(ngModel)]="passwordConfirm" type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="yourpassword" required>
+        <input #confirmPassword="ngModel" [(ngModel)]="passwordConfirm" (keyup)="onSetNewPassword()" type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="yourpassword" required>
+        <span *ngIf="warning" id="helpBlock" class="help-block">The passwords provided are different. Please try again.</span>
       </div>
 
+      <br>
       <input type="submit" value="Register" class="btn btn-primary">
     </form>
   </div>
