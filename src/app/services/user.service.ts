@@ -8,6 +8,8 @@ import { environment } from "../../environments/environment";
 export class UserService {
 
   url:string;
+  identity:any;
+  token:any;
 
   constructor(private http:Http) { 
     this.url = environment.urls.base;
@@ -18,6 +20,18 @@ export class UserService {
     let headers = new Headers({'Content-Type':'application/json'});
     return this.http.post(`${this.url}login`, user, headers)
       .map(res => res.json());
+  }
+
+  getIdentity(){
+    let identity = JSON.parse(localStorage.getItem('identity'));
+    identity != undefined ? this.identity = identity : this.identity = null;
+    return this.identity;
+  }
+
+  getToken(){
+    let token = JSON.parse(localStorage.getItem('token'));
+    token != undefined ? this.token = token : this.token = null;
+    return this.token;
   }
 
 }

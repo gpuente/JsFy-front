@@ -7,6 +7,8 @@
   <div class="clearfix"></div>
   <div class="central col-lg-11">
     <p>Estás logueado en la app</p>
+    <span>{{ identity.name }} {{ identity.surname }}</span>
+    <span class="btn btn-primary" (click)="logout()">Logout</span>
   </div>
 </div>
 
@@ -43,17 +45,17 @@
     <form #registerForm="ngForm" class="col-md-9" >
       <div class="form-group">
         <label for="name">Name:</label>
-        <input #name="ngModel" [(ngModel)]="user.name" type="text" name="name" id="name" class="form-control" placeholder="yourname" required>
+        <input #name="ngModel" [(ngModel)]="newUser.name" type="text" name="name" id="name" class="form-control" placeholder="yourname" required>
       </div>
 
       <div class="form-group">
         <label for="lastname">Last Name:</label>
-        <input #lastname="ngModel" [(ngModel)]="user.surname" type="text" name="lastname" id="lastname" class="form-control" placeholder="lastname" required>
+        <input #lastname="ngModel" [(ngModel)]="newUser.surname" type="text" name="lastname" id="lastname" class="form-control" placeholder="lastname" required>
       </div>
 
       <div class="form-group">
         <label for="_email">Email:</label>
-        <input #_email="ngModel" [(ngModel)]="user.email" type="text" name="_email" id="_email" class="form-control" placeholder="your@email.com" required>
+        <input #_email="ngModel" [(ngModel)]="newUser.email" type="text" name="_email" id="_email" class="form-control" placeholder="your@email.com" required>
       </div>
 
       <div class="form-group">

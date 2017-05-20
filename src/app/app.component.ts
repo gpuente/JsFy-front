@@ -19,8 +19,9 @@ export class AppComponent implements OnInit{
    */
   title:string = 'JsFy';
   user:User;
+  newUser:User;
   identity:any;
-  token:string;
+  token:any;
   newPassword:string;
   passwordConfirm:string;
   errorMessage:string;
@@ -36,10 +37,24 @@ export class AppComponent implements OnInit{
    */
   constructor(private _userService:UserService){
     this.user = new User('ROLE_USER');
+    this.newUser = new User('ROLE_USER');
   }
 
+
+
+
+
+
+/**
+ * -------------------------------------------------------------------
+ * Get user token and identity from localStorage if exist
+ * -------------------------------------------------------------------
+ * 
+ * @memberof AppComponent
+ */
   ngOnInit(){
-    
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
   }
 
 
@@ -57,10 +72,11 @@ export class AppComponent implements OnInit{
   onSubmit(){
     this.logInUser(this.user).then(user => {
       this.identity = user;
+      localStorage.setItem('identity', JSON.stringify(this.identity));
       return this.getUserHash(this.user);
     }).then(hash => {
-      console.log('inside hash')
-      console.log(hash);
+      this.token = <string>hash;
+      localStorage.setItem('token', <string>hash);
     }).catch(err => {
        console.log(err);
        this.errorMessage = st.err_message;
@@ -85,7 +101,7 @@ export class AppComponent implements OnInit{
   logInUser(user:User = this.user){
     return new Promise((resolve, reject) => {
       this._userService.logIn(user).subscribe(res => {
-        if(!res.user) throw new Error('Usuario no logueado!!!');
+        if(!res.user) throw new Error(st.err_message);
         resolve(res.user);
       },
       err => {
@@ -93,6 +109,28 @@ export class AppComponent implements OnInit{
       });
     });
   }
+
+
+
+
+
+
+  /**
+   * --------------------------------------------------------------------
+   * Destroy session from localStorage and reset user variables
+   * --------------------------------------------------------------------
+   * 
+   * @memberOf AppComonent
+   */
+    logout(){
+      localStorage.removeItem('identity');
+      localStorage.removeItem('token');
+      this.identity = null;
+      this.token = null;
+      this.user = new User();
+    }
+
+
 
 
 
